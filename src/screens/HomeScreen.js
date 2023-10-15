@@ -4,9 +4,9 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {categories, coffeeItems } from '../constants';
 import Carousel from 'react-native-snap-carousel';
+import { BellIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
 // import {Bgimage1} from '../../assets/img/beans.png'
-// import { BellIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
-// import { MapPinIcon } from 'react-native-heroicons/solid'
+import { MapPinIcon } from 'react-native-heroicons/solid'
 import {themeColors} from '../theme';
 const HomeScreen = () => {
     const [activeCategory, setActiveCategory] = useState(1);
@@ -19,10 +19,10 @@ const HomeScreen = () => {
                 <Image source={require('../../assets/img/avatar.png')}
                     className="h-9 w-9 rounded-full"/>
                 <View className="flex-row items-center space-x-2">
-                  <Text>Mapicon</Text>
-                  <Text>Patia, Bhubaneshwar</Text>
+                  <MapPinIcon size="25" color={themeColors.bgLight} />
+                  <Text className="font-semibold text-base">Patia, Bhubaneshwar</Text>
                 </View>
-                <Text>bellicon</Text>
+                <BellIcon size="27" color="black" />
             </View>
             {/* Search icon */}
             <View className="mx-5 shadow" style={{marginTop: hp(2)}}>
@@ -31,7 +31,7 @@ const HomeScreen = () => {
                 <TouchableOpacity
                   className="rounded-full p-2"
                   style = {{backgroundColor: themeColors.bgLight}}>
-                    <Text>icon</Text>
+                  <MagnifyingGlassIcon size="25" strokeWidth={2} color="white" />
                 </TouchableOpacity>
               </View>
             </View>
@@ -62,7 +62,7 @@ const HomeScreen = () => {
 
             {/* coffee card */}
 
-            <View>
+            {/* <View>
               <View>
                 <Carousel
                   containerCustomStyle={{overflow: 'visible'}}
@@ -77,7 +77,7 @@ const HomeScreen = () => {
                   slideStyle={{display: 'flex', alignItems: 'center'}}
                 />
               </View>
-            </View>
+            </View> */}
         </ImageBackground>
     </SafeAreaView>
 

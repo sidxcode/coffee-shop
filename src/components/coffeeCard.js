@@ -1,4 +1,5 @@
 import { View, Text, Image, TouchableOpacity, Dimensions } from 'react-native'
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import React from 'react'
 import { themeColors } from '../theme'
 import { useNavigation } from '@react-navigation/native'
