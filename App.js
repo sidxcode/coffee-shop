@@ -3,6 +3,7 @@ import React from 'react'
 import LoginScreen from './src/screens/LoginScreen'
 import SignupScreen from './src/screens/SignupScreen'
 import HomeScreen from './src/screens/HomeScreen'
+import Navigation from './src/navigation/appNavigation'
 // import { useFonts } from 'expo-font'
 // import AppLoading from 'expo-app-loading'
 
@@ -16,9 +17,7 @@ const App = () => {
   //   return <AppLoading/>
   // }
     return (
-      // <LoginScreen/>
-      <SignupScreen/>
-    // <HomeScreen/>
+    <Navigation/>
     )
     
 }

@@ -8,11 +8,18 @@ import SignupScreen from '../screens/SignupScreen'
 import { themeColors } from '../theme'
 import ProductScreen from '../screens/ProductScreen'
 
+const Stack = createNativeStackNavigator();
+
 const appNavigation = () => {
   return (
-    <View>
-      <Text>appNavigation</Text>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName='Login'>
+        <Stack.Screen name = "Login" component={LoginScreen}/>
+        <Stack.Screen name = "Signup" component={SignupScreen}/>
+        <Stack.Screen name = "Home" component={HomeScreen}/>
+        <Stack.Screen name = "Product" component={ProductScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 

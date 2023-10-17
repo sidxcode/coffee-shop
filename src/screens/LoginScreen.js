@@ -5,8 +5,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Bgimage1 from '../../assets/img/beansBackground2.png';
 import {themeColors} from '../theme';
 import { EnvelopeIcon , LockClosedIcon} from 'react-native-heroicons/outline';
+import { useNavigation } from '@react-navigation/native';
 
-const LoginScreen = () => {
+const LoginScreen = ({}) => {
+    const navigation = useNavigation();
   return (
     <SafeAreaView className="flex-1">
         <ImageBackground source={Bgimage1} className="h-full w-full relative">
@@ -29,10 +31,10 @@ const LoginScreen = () => {
 
                     </View>
                     
-                    {/* sign Up */}
-                    <TouchableOpacity>
+                    {/* Log in */}
+                    <TouchableOpacity onPress={()=> navigation.navigate('Home')}>
                     <View style={{width:wp(85), backgroundColor: themeColors.bgLight}} className="mt-10 border-black border-2 rounded-2xl items-center">
-                        <Text className="p-4">Sign Up</Text>
+                        <Text className="p-4">Log In</Text>
                     </View>
                     </TouchableOpacity>
 
@@ -70,7 +72,7 @@ const LoginScreen = () => {
                     
                     <View className="flex-row justify-center items-center m-4">
                         <Text className="m-2">Don't have an account?</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=> navigation.navigate('Signup')}>
                             <Text style={{color: themeColors.bgLight}}>Sign Up</Text>
                         </TouchableOpacity>
 
