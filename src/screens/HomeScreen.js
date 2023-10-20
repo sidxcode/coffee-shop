@@ -1,87 +1,70 @@
-import { View ,Text,Image, ImageBackground,TextInput, TouchableOpacity, FlatList } from 'react-native'
+import { View, Text, Image, ImageBackground, TextInput, TouchableOpacity, FlatList } from 'react-native'
 import React, { useState } from 'react'
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {categories, coffeeItems } from '../constants';
-import Carousel from 'react-native-snap-carousel';
-import { BellIcon, MagnifyingGlassIcon } from 'react-native-heroicons/outline'
-// import {Bgimage1} from '../../assets/img/beans.png'
-import { MapPinIcon } from 'react-native-heroicons/solid'
-import {themeColors} from '../theme';
+import { coffeeItems } from '../constants';
+// import Carousel from 'react-native-snap-carousel';
+import { BellIcon, MagnifyingGlassIcon, ShoppingBagIcon } from 'react-native-heroicons/outline'
+import Bgimage from '../../assets/img/beans.png';
+import { ArrowUpRightIcon } from 'react-native-heroicons/solid'
+import CoffeeCard from '../components/CoffeeCard';
+import { themeColors } from '../theme';
 const HomeScreen = () => {
-    const [activeCategory, setActiveCategory] = useState(1);
-    const handleError = (e) => {console.log(e.nativeEvent.error);};
+
   return (
-    <SafeAreaView className="flex-1">
-        <ImageBackground style={{width:'100%', height:'100%'}} onError={handleError} source= {require('../../assets/img/beans.png')}>
-            {/* avatar and bell icon */}
-            <View className='mx-4 flex-row justify-between items-center'>
-                <Image source={require('../../assets/img/avatar.png')}
-                    className="h-9 w-9 rounded-full"/>
-                <View className="flex-row items-center space-x-2">
-                  <MapPinIcon size="25" color={themeColors.bgLight} />
-                  <Text className="font-semibold text-base">Patia, Bhubaneshwar</Text>
-                </View>
-                <BellIcon size="27" color="black" />
-            </View>
-            {/* Search icon */}
-            <View className="mx-5 shadow" style={{marginTop: hp(2)}}>
-              <View className="flex-row items-center rounded-full p-1 pr-4 bg-[#e6e6e6]">
-                <TextInput placeholder='Search' className='p-4 flex-1 font-semibold text-gray-700'/>
-                <TouchableOpacity
-                  className="rounded-full p-2"
-                  style = {{backgroundColor: themeColors.bgLight}}>
-                  <MagnifyingGlassIcon size="25" strokeWidth={2} color="white" />
-                </TouchableOpacity>
-              </View>
-            </View>
-            {/* categories */}
-            <View className="px-5 mt-6">
-              <FlatList
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                data={categories}
-                keyExtractor={item=> item.id}
-                className="overflow-visible"
-                renderItem={({item})=>{
-                  isActive = item.id==activeCategory;
-                  let activeTextClass = isActive? 'text-white': 'text-gray-700';
-                  return(
-                    <TouchableOpacity
-                      onPress={()=>setActiveCategory(item.id)}
-                      style={{backgroundColor: isActive? themeColors.bgLight: 'rgba(0,0,0,0,0.7)'}}
-                      className="p-4 px-5 mr-2 rounded-full shadow"
-                    >
-                      <Text className={"font-semibold " + activeTextClass}>{item.title}</Text>
+    <SafeAreaView>
+      <ImageBackground source={Bgimage} className="h-full w-full relative">
+        <View className="flex-row items-center justify-between p-5">
 
-                    </TouchableOpacity>
-                  )
-                }}
-              />
+          <View>
+
+            <View className="flex-row items-center">
+              <Text className="mr-2">Hi,</Text>
+              <Text className="font-semibold text-base">Siddharth</Text>
             </View>
 
-            {/* coffee card */}
+            <Text className="">Let's find a good coffee bean for you !</Text>
 
-            {/* <View>
-              <View>
-                <Carousel
-                  containerCustomStyle={{overflow: 'visible'}}
-                  data={coffeeItems}
-                  renderItem={({item})=> <CoffeeCard item={item}/>}
-                  firstItem={1}
-                  loop={true}
-                  inactiveSlideScale={0.75}
-                  inactiveSlideOpacity={0.75}
-                  sliderWidth={width}
-                  itemWidth={width*0.63}
-                  slideStyle={{display: 'flex', alignItems: 'center'}}
-                />
-              </View>
-            </View> */}
-        </ImageBackground>
+          </View>
+
+          <View className>
+            <ShoppingBagIcon color="black" size='30' />
+          </View>
+
+        </View>
+
+        {/* Search */}
+        <View style={{ width: wp(90) }} className="flex-row mx-5 bg-gray-10 py-4 rounded-3xl border-black border-2">
+          <View className="mx-3">
+            <MagnifyingGlassIcon color="black" size='30' />
+          </View>
+          <View>
+            <TextInput placeholder='Search coffee beans...' />
+          </View>
+        </View>
+
+        {/* most popular
+        <View className="flex-row items-center m-5 justify-between ">
+          <Text className="font-semibold text-lg">Most popular 🔥</Text>
+          <TouchableOpacity>
+            <Text className="underline">See all</Text>
+          </TouchableOpacity>
+        </View> */}
+
+          
+          
+        <View className="flex justify-center items-center mt-5">
+          
+          <FlatList 
+            data={coffeeItems}
+            numColumns={2}
+            renderItem={({item}) => <CoffeeCard coffee = {item}/>}
+            keyExtractor={(item) => item.id.toString()}
+          />
+        </View>
+        
+      </ImageBackground>
     </SafeAreaView>
-
-
   )
 }
 
